@@ -3,18 +3,18 @@ h1 {
     helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
     sans-serif;
   margin: 24px 0;
-  color: rgb(226, 56, 5);
+  color: rgb(241, 84, 188);
 }
 
 .bold-paragraph {
-  color: #7400ef;
+  color: #e90000;
 }
 
 #bold {
-  background-color: #a981c1;
+  background-color: #ffb3b3;
   color: rgb(255, 255, 255);
 }
 
 img {
-  width: 100%;
+  width: 80%;
 }
