@@ -4,43 +4,6 @@
     <meta charset="utf-8" />
     <title>WebJam 2025</title>
     <link rel="stylesheet" href="./styles.css" />
-
-    <style>
-      #message {
-        display: none;
-        margin-top: 15px;
-        padding: 10px;
-        background: rgb(255, 255, 255);
-        width: 200px;
-      }
-    </style>
-
-    <style>
-      .red {
-        background-color: red;
-        color: black;
-        padding: 10px 20px;
-        border-radius: 6px;
-      }
-    </style>
-
-    <style>
-      .orange {
-        background-color: orange;
-        color: black;
-        padding: 10px 20px;
-        border-radius: 6px;
-      }
-    </style>
-
-    <style>
-      .yellow {
-        background-color: yellow;
-        color: black;
-        padding: 10px 20px;
-        border-radius: 6px;
-      }
-    </style>
   </head>
 
   <body>
@@ -56,13 +19,35 @@
     <button class="orange" id="orange2" type="button">Click Me!</button>
     <button class="yellow" id="yellow1" type="button">Click Me!</button>
     <button class="yellow" id="yellow2" type="button">Click Me!</button>
+    <button class="yellow" id="green1" type="button">Click Me!</button>
+    <button class="yellow" id="green2" type="button">Click Me!</button>
+    <button class="yellow" id="blue1" type="button">Click Me!</button>
+    <button class="yellow" id="blue2" type="button">Click Me!</button>
+    <button class="yellow" id="purple1" type="button">Click Me!</button>
+    <button class="yellow" id="purple2" type="button">Click Me!</button>
 
     <div id="matchedRed" style="margin-top: 10px"></div>
     <div id="matchedOrange" style="margin-top: 10px"></div>
     <div id="matchedYellow" style="margin-top: 10px"></div>
+    <div id="matchedGreen" style="margin-top: 10px"></div>
+    <div id="matchedBlue" style="margin-top: 10px"></div>
+    <div id="matchedPurple" style="margin-top: 10px"></div>
 
     <script>
-      const colors = ["red", "red", "orange", "orange", "yellow", "yellow"];
+      const colors = [
+        "red",
+        "red",
+        "orange",
+        "orange",
+        "yellow",
+        "yellow",
+        "green",
+        "green",
+        "blue",
+        "blue",
+        "purple",
+        "purple",
+      ];
       let lastClickedColor = null;
 
       // randomly shuffles the button colors
@@ -76,7 +61,7 @@
       // wait for HTML to load
       window.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(
-          "#red1, #red2, #orange1, #orange2, #yellow1, #yellow2"
+          "#red1, #red2, #orange1, #orange2, #yellow1, #yellow2, #green1, #green2, #blue1, #blue2, #purple1, #purple2"
         );
 
         const shuffledColors = [...colors];
@@ -84,13 +69,20 @@
 
         buttons.forEach((btn, index) => {
           const color = shuffledColors[index];
-          btn.classList.remove("red", "orange", "yellow");
+          btn.classList.remove(
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple"
+          );
           btn.classList.add(color);
           btn.onclick = () => handleClick(color);
 
           setTimeout(() => {
             btn.style.backgroundColor = "grey";
-          }, 1000);
+          }, 5000);
         });
       });
 
