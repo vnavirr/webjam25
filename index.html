@@ -26,14 +26,13 @@
     <button class="yellow" id="purple1" type="button">Click Me!</button>
     <button class="yellow" id="purple2" type="button">Click Me!</button>
 
-    <div id="matchFailed" style="margin-top: 10px"></div>
-
-    <div id="matchedRed" style="margin-top: 10px"></div>
-    <div id="matchedOrange" style="margin-top: 10px"></div>
-    <div id="matchedYellow" style="margin-top: 10px"></div>
-    <div id="matchedGreen" style="margin-top: 10px"></div>
-    <div id="matchedBlue" style="margin-top: 10px"></div>
-    <div id="matchedPurple" style="margin-top: 10px"></div>
+    <div class="message" id="matchFailed"></div>
+    <div class="message" id="matchedRed"></div>
+    <div class="message" id="matchedOrange"></div>
+    <div class="message" id="matchedYellow"></div>
+    <div class="message" id="matchedGreen"></div>
+    <div class="message" id="matchedBlue"></div>
+    <div class="message" id="matchedPurple"></div>
 
     <script>
       const colors = [
@@ -84,7 +83,7 @@
 
           setTimeout(() => {
             btn.style.backgroundColor = "grey";
-          }, 5000);
+          }, 4000);
         });
       });
 

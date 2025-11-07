@@ -57,10 +57,7 @@ button {
   background-color: blueviolet;
 }
 
-#message {
-  display: none;
-  margin-top: 15px;
-  padding: 10px;
-  background: rgb(255, 255, 255);
-  width: 200px;
+.message {
+  margin-top: 10px;
+  text-align: center;
 }
