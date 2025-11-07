@@ -21,56 +21,40 @@ img {
 }
 
 button {
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  color: blueviolet;
-  padding: 1%;
   text-align: center;
-  box-shadow: inset;
   font-family: Poppins;
   font-style: italic;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 6px;
+  width: 100px;
+  height: 50px;
+  font-size: 12px;
+  margin: 1px;
 }
 
 .red {
   background-color: red;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .orange {
   background-color: orange;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .yellow {
   background-color: yellow;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .green {
   background-color: green;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .blue {
   background-color: blue;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .purple {
   background-color: blueviolet;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 #message {

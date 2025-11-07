@@ -95,9 +95,8 @@
               `matched${capitalize(color)}`
             ).innerText = `You matched ${color}!`;
           } else {
-            document.getElementById("matchedRed").innerText = "Not a match";
-            document.getElementById("matchedOrange").innerText = "Game Over!!";
-            document.getElementById("matchedYellow").innerText = ":(";
+            document.getElementById("matchedRed").innerText =
+              "Not a match! Game over :(";
           }
           lastClickedColor = null;
         }
