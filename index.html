@@ -4,20 +4,116 @@
     <meta charset="utf-8" />
     <title>WebJam 2025</title>
     <link rel="stylesheet" href="./styles.css" />
+
+    <style>
+      #message {
+        display: none;
+        margin-top: 15px;
+        padding: 10px;
+        background: rgb(255, 255, 255);
+        width: 200px;
+      }
+    </style>
+
+    <style>
+      .red {
+        background-color: red;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 6px;
+      }
+    </style>
+
+    <style>
+      .orange {
+        background-color: orange;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 6px;
+      }
+    </style>
+
+    <style>
+      .yellow {
+        background-color: yellow;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 6px;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>Vaishnavi & Harini</h1>
+    <h1>Color Matching!</h1>
     <p class="bold-paragraph">
-      We are <b id="bold">so excited</b> for WebJam 2025!
+      You must <b id="bold">match</b> the two cards of the same color to win the
+      game!
     </p>
-    <img
-      src="./photos/polestar.jpeg"
-      alt="zoomed in view of the polestar logo in the rear taillight"
-    />
-    <img src="./photos/moon.jpeg" alt="half moon" />
-    <img
-      src="./photos/VaishnaviRaghuBeach.jpeg"
-      alt="Vaishnavi Raghu at the beach"
-    />
+
+    <button class="red" id="red1" type="button">Click Me!</button>
+    <button class="red" id="red2" type="button">Click Me!</button>
+    <button class="orange" id="orange1" type="button">Click Me!</button>
+    <button class="orange" id="orange2" type="button">Click Me!</button>
+    <button class="yellow" id="yellow1" type="button">Click Me!</button>
+    <button class="yellow" id="yellow2" type="button">Click Me!</button>
+
+    <div id="matchedRed" style="margin-top: 10px"></div>
+    <div id="matchedOrange" style="margin-top: 10px"></div>
+    <div id="matchedYellow" style="margin-top: 10px"></div>
+
+    <script>
+      const colors = ["red", "red", "orange", "orange", "yellow", "yellow"];
+      let lastClickedColor = null;
+
+      // randomly shuffles the button colors
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      // wait for HTML to load
+      window.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(
+          "#red1, #red2, #orange1, #orange2, #yellow1, #yellow2"
+        );
+
+        const shuffledColors = [...colors];
+        shuffle(shuffledColors);
+
+        buttons.forEach((btn, index) => {
+          const color = shuffledColors[index];
+          btn.classList.remove("red", "orange", "yellow");
+          btn.classList.add(color);
+          btn.onclick = () => handleClick(color);
+
+          setTimeout(() => {
+            btn.style.backgroundColor = "grey";
+          }, 1000);
+        });
+      });
+
+      function handleClick(color) {
+        if (lastClickedColor === null) {
+          lastClickedColor = color; // first click
+        } else {
+          if (lastClickedColor === color) {
+            document.getElementById(
+              `matched${capitalize(color)}`
+            ).innerText = `You matched ${color}!`;
+          } else {
+            document.getElementById("matchedRed").innerText = "Not a match";
+            document.getElementById("matchedOrange").innerText = "Game Over!!";
+            document.getElementById("matchedYellow").innerText = ":(";
+          }
+          lastClickedColor = null;
+        }
+      }
+
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+    </script>
   </body>
 </html>

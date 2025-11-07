@@ -1,20 +1,32 @@
 h1 {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
-    sans-serif;
+  font-family: Poppins;
   margin: 24px 0;
-  color: rgb(241, 84, 188);
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
 
 .bold-paragraph {
-  color: #e90000;
+  color: #000000;
+  font-family: Poppins;
+  text-align: center;
 }
 
 #bold {
-  background-color: #ffb3b3;
-  color: rgb(255, 255, 255);
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
 
 img {
-  width: 80%;
+  display: inline-block;
+}
+
+button {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  color: blueviolet;
+  padding: 1%;
+  text-align: center;
+  box-shadow: inset;
+  font-family: Poppins;
+  font-style: italic;
 }
