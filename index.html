@@ -26,6 +26,8 @@
     <button class="yellow" id="purple1" type="button">Click Me!</button>
     <button class="yellow" id="purple2" type="button">Click Me!</button>
 
+    <div id="matchFailed" style="margin-top: 10px"></div>
+
     <div id="matchedRed" style="margin-top: 10px"></div>
     <div id="matchedOrange" style="margin-top: 10px"></div>
     <div id="matchedYellow" style="margin-top: 10px"></div>
@@ -95,8 +97,14 @@
               `matched${capitalize(color)}`
             ).innerText = `You matched ${color}!`;
           } else {
-            document.getElementById("matchedRed").innerText =
+            document.getElementById("matchFailed").innerText =
               "Not a match! Game over :(";
+            document.getElementById("matchedRed").innerText = "";
+            document.getElementById("matchedOrange").innerText = "";
+            document.getElementById("matchedYellow").innerText = "";
+            document.getElementById("matchedGreen").innerText = "";
+            document.getElementById("matchedBlue").innerText = "";
+            document.getElementById("matchedPurple").innerText = "";
           }
           lastClickedColor = null;
         }
