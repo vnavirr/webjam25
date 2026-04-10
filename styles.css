@@ -1,10 +1,91 @@
-h1 {
-  font-family: Poppins;
-  margin: 24px 0;
-  color: rgb(0, 0, 0);
-  text-align: center;
+:root{
+  --red: #ef4444;
+  --orange: #f97316;
+  --yellow: #eab308;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+
+  --bg: #0a0a0f;
+  --font-head: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --text: #f0f0f5;
+  --muted: rgba(240,240,245,0.45);
+
+  --surface:  #13131a;
+  --surface2: #1c1c28;
+  --border:  rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.13);
+
+  --radius-card: 14px;
+  --radius-btn:  10px;
+  --card-back: #1e1e2e;
+  --card-front:#16162a;
+
+  --accent:    #a855f7;
+
 }
 
+html, body{
+  min-height: 100%;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  border-radius: 12px;
+  background-color: var(--surface2);
+  border: 0.5px solid var(--border2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+  padding: 10px;
+}
+
+.logo-mark::before,
+.logo-mark::after {
+  content: "";
+  border-radius: 3px;
+}
+
+.logo-mark{
+  position: relative;
+}
+
+.logo-mark::before {
+  position: absolute;
+  background-color: var(--purple);
+  top: 13px;
+  left: 13px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  box-shadow: 20px 0 0 var(--blue),
+              0 20px 0 var(--green),
+              20px 20px 0 var(--yellow);
+}
+
+h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 24px 0;
+  line-height: 1;
+}
 
 button {
   text-align: center;
@@ -18,10 +99,10 @@ button {
   margin: 5px;
 }
 .subtitle{
-  font-family: Poppins;
-  margin: 0 0 24px 0;
-  color: rgb(0, 0, 0);
-  text-align: center;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
 }
 
 .bg-grid {
