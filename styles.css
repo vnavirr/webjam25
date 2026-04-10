@@ -5,36 +5,45 @@ h1 {
   text-align: center;
 }
 
-.bold-paragraph {
-  color: #000000;
-  font-family: Poppins;
-  text-align: center;
-}
-
-#bold {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-}
-
-img {
-  display: inline-block;
-}
 
 button {
   text-align: center;
-  font-family: Poppins;
+  font-family: 'Times New Roman', Times, serif;
   font-style: italic;
-  color: black;
-  padding: 10px 20px;
+  color: rgb(0, 0, 0);
   border-radius: 6px;
-  width: 225px;
+  width: 100px;
   height: 50px;
-  font-size: 12px;
-  margin: 1px;
+  font-size: 16px;
+  margin: 5px;
+}
+.subtitle{
+  font-family: Poppins;
+  margin: 0 0 24px 0;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+  linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.button-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: stretch;
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
 }
 
 .orange {

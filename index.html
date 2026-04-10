@@ -2,29 +2,53 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <title>WebJam 2025</title>
+    <title>Memory Color Matching</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
   <body>
-    <h1>Memory Color Matching!</h1>
-    <p class="bold-paragraph">
-      You must <b id="bold">match</b> the two cards of the same color to win the
-      game!
-    </p>
 
-    <button class="red" id="red1" type="button">Click Me!</button>
-    <button class="red" id="red2" type="button">Click Me!</button>
-    <button class="orange" id="orange1" type="button">Click Me!</button>
-    <button class="orange" id="orange2" type="button">Click Me!</button>
-    <button class="yellow" id="yellow1" type="button">Click Me!</button>
-    <button class="yellow" id="yellow2" type="button">Click Me!</button>
-    <button class="yellow" id="green1" type="button">Click Me!</button>
-    <button class="yellow" id="green2" type="button">Click Me!</button>
-    <button class="yellow" id="blue1" type="button">Click Me!</button>
-    <button class="yellow" id="blue2" type="button">Click Me!</button>
-    <button class="yellow" id="purple1" type="button">Click Me!</button>
-    <button class="yellow" id="purple2" type="button">Click Me!</button>
+    <div class="bg-grid"></div>
+
+    <header>
+      <div class="logo-mark"></div>
+      <h1>Memory Color Matching</h1>
+      <p class = "subtitle">You must <b>match</b> the two cards of the same color to win the game!</p>
+    </header>
+
+    <div class "hud">
+      <div class="stat-block">
+        <span class="stat-label">Pairs</span>
+        <span class="stat-value" id="pairsCount">0/6</span>
+      </div>
+
+      <div class = "stat-block">
+        <span class="stat-label">Moves</span>
+        <span class-"stat-value" id"moviesCount">0</span>
+
+      </div>
+
+      <div class="stat-block">
+        <span class="stat-label">Time</span>
+        <span class="stat-value" id="timer">0:00</span>
+  
+    </div>
+
+    <div class="button-container">   
+      <button class="red" id="red1" type="button">Click Me!</button>
+      <button class="red" id="red2" type="button">Click Me!</button>
+      <button class="orange" id="orange1" type="button">Click Me!</button>
+      <button class="orange" id="orange2" type="button">Click Me!</button>
+      <button class="yellow" id="yellow1" type="button">Click Me!</button>
+      <button class="yellow" id="yellow2" type="button">Click Me!</button>
+      <button class="yellow" id="green1" type="button">Click Me!</button>
+      <button class="yellow" id="green2" type="button">Click Me!</button>
+      <button class="yellow" id="blue1" type="button">Click Me!</button>
+      <button class="yellow" id="blue2" type="button">Click Me!</button>
+      <button class="yellow" id="purple1" type="button">Click Me!</button>
+      <button class="yellow" id="purple2" type="button">Click Me!</button>
+    </div>
 
     <div class="message" id="matchFailed"></div>
     <div class="message" id="matchedRed"></div>
@@ -37,18 +61,16 @@
     <script>
       const colors = [
         "red",
-        "red",
-        "orange",
         "orange",
         "yellow",
-        "yellow",
-        "green",
         "green",
         "blue",
-        "blue",
-        "purple",
         "purple",
       ];
+
+      const PEEK_DURATION = 4000;
+      const LOCK_DURATION = 700;
+
       let lastClickedColor = null;
 
       // randomly shuffles the button colors
