@@ -10,7 +10,7 @@
   --font-head: "Syne", sans-serif;
   --font-body: "DM Sans", sans-serif;
   --text: #f0f0f5;
-  --muted: rgba(240,240,245,0.45);
+  --muted: rgba(255, 255, 255, 0.693);
 
   --surface:  #13131a;
   --surface2: #1c1c28;
@@ -28,6 +28,28 @@
 
 html, body{
   min-height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1rem 5rem;
+  overflow-x: hidden;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+  linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 body > * {
@@ -87,6 +109,47 @@ h1 {
   line-height: 1;
 }
 
+.subtitle {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.hud {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-block {
+  background: var(--surface);
+  border: 0.5px solid var(--border2);
+  border-radius: 10px;
+  padding: 0.55rem 1.25rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.stat-label {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 button {
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
@@ -97,23 +160,6 @@ button {
   height: 50px;
   font-size: 16px;
   margin: 5px;
-}
-.subtitle{
-  margin-top: 0.6rem;
-  font-size: 0.95rem;
-  color: var(--muted);
-  font-style: italic;
-}
-
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  background-image:
-  linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .button-container {
