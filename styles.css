@@ -171,6 +171,15 @@ h1 {
   color: var(--muted);
 }
 
+.board{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: min(520px, 100%);
+  margin-bottom: 1.75rem;
+}
+
+
 button {
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
