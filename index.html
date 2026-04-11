@@ -53,28 +53,31 @@
 
     </div>
 
-    <div class="button-container">   
-      <button class="red" id="red1" type="button">Click Me!</button>
-      <button class="red" id="red2" type="button">Click Me!</button>
-      <button class="orange" id="orange1" type="button">Click Me!</button>
-      <button class="orange" id="orange2" type="button">Click Me!</button>
-      <button class="yellow" id="yellow1" type="button">Click Me!</button>
-      <button class="yellow" id="yellow2" type="button">Click Me!</button>
-      <button class="yellow" id="green1" type="button">Click Me!</button>
-      <button class="yellow" id="green2" type="button">Click Me!</button>
-      <button class="yellow" id="blue1" type="button">Click Me!</button>
-      <button class="yellow" id="blue2" type="button">Click Me!</button>
-      <button class="yellow" id="purple1" type="button">Click Me!</button>
-      <button class="yellow" id="purple2" type="button">Click Me!</button>
-    </div>
+    <div class="win-overlay" id="winOverlay" aria-hidden="'true">
+      <div class="win-card">
 
-    <div class="message" id="matchFailed"></div>
-    <div class="message" id="matchedRed"></div>
-    <div class="message" id="matchedOrange"></div>
-    <div class="message" id="matchedYellow"></div>
-    <div class="message" id="matchedGreen"></div>
-    <div class="message" id="matchedBlue"></div>
-    <div class="message" id="matchedPurple"></div>
+        <div class="win-confetti" id="confetti"></div>
+        <p class="win-eyebrow">You did it!</p>
+        <h2 class="win-heading">All Matched</h2>
+
+          <div class="win-stats">
+
+            <div class="win-stat">
+              <span class="win-stat-label">Moves</span>
+              <span class="win-stat-value" id="finalMoves">-</span>
+            </div>
+
+            <div class="win-stat">
+              <span class="win-stat-label">Time</span>
+              <span class="win-stat-value" id="finalTime">-</span>
+            </div>
+
+          </div>
+
+        <button class="btn-play-again" id="playAgainBtn">Play Again</button>
+
+      </div>
+    </div>
 
     <script>
       const colors = [
