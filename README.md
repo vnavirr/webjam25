@@ -1,13 +1,47 @@
-# webjam-base-template
+# 🎨 Memory Color Matching
 
-This is the template repository for ICSSC's WebJam 2024 workshop.
+## 🎮 How to Play
 
-## Developing with CodeSandbox
+1. When the game loads, all 12 cards briefly reveal their colors — memorize them!
+2. Click any face-down card to flip it over
+3. Click a second card to try to find its match
+4. If the two cards share the same color, they stay face-up and are marked as matched
+5. If they don't match, both cards flip back over after a short pause
+6. Match all 6 pairs to win and see your final move count and time
 
-After you've used this template to create a copy in your account, sign in to [CodeSandbox](https://codesandbox.io) with your GitHub account. When asked to choose a plan, just choose the free plan.
+## ✨ Features
+* Peek phase — all cards are revealed for 3.5 seconds at the start of each game so you can study the layout
+* Move counter — tracks every pair attempt you make
+* Live timer — starts on your first click and stops when you win
+* Toast notifications — instant feedback on matches and mismatches
+* Win screen — animated confetti with your final moves and time displayed
+* New Game button — restart at any time without refreshing the page
+* Keyboard accessible — all cards are focusable and operable with Enter or Space
+* Responsive layout — scales down cleanly on mobile screens
 
-Once you've successfully created a CodeSandbox account, import your repository by clicking the "+ Repository" button on the top bar of the website, close to the top-right corner. When prompted to authorize GitHub, click on "Authorize access to public and private repositories" and follow the steps.
+## 🚀 Getting Started
+**Prerequisites**
+* Node.js v14 or higher
+* npm (included with Node.js)
 
-Select the repository you created and click "Import repository" in the bottom right of the popup window; no need to change any of the settings. It'll take a while for CodeSandbox to import your repository, but once that's done you'll need to set up your project in the right-hand panel.
+**Installation**
+```
+# Clone the repository
+git clone https://github.com/your-username/memory-color-matching.git
 
-Make sure "Use the current configuration" is selected, click "next" all the way until the final page, and then click "Apply and start". It may fail the first time, so if that happens just click the plus in a box on the right hand side, click "Project setup" again, and just repeat the steps.
+# Navigate into the project folder
+cd memory-color-matching
+
+# Install the static file server
+npm install
+```
+
+**Running the Game**
+```
+npm run serve
+```
+Then open your browser and go to http://localhost:3000.
+
+**Dev Container (Optional)**
+This project includes a `.devcontainer/devcontainer.json` configuration for use with VS Code Dev Containers. Opening the project in a dev container will automatically set up a Node.js 20 environment matching the original development setup.
+Requirements: Docker Desktop and the Dev Containers extension for VS Code.
