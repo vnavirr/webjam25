@@ -17,7 +17,7 @@
       <p class = "subtitle">You must <b>match</b> the two cards of the same color to win the game!</p>
     </header>
 
-    <div class "hud">
+    <div class="hud">
 
       <div class="stat-block">
         <span class="stat-label">Pairs</span>
@@ -80,7 +80,7 @@
     </div>
 
     <script>
-      const colors = [
+      const COLORS = [
         "red",
         "orange",
         "yellow",
@@ -89,72 +89,207 @@
         "purple",
       ];
 
-      const PEEK_DURATION = 4000;
+      const PEEK_DURATION = 3500;
       const LOCK_DURATION = 700;
 
-      let lastClickedColor = null;
+      const board = document.getElementById("board");
+      const toastEL = document.getElementById("toast");
+      const winOverlay = document.getElementById("winOverlay");
+      const pairsEl = document.getElementById("pairsCount)");
+      const movesEl = document.getElementById("movesCount");
+      const timerEl = document.getElementById("timer");
+      const finalMovesEl = document.getElementById("finalMoves");
+      const finalTimeEl = document.getElementById("finalTime");
+      const confettiEl = document.getElementById("confetti");
+
+      let selected = null;
+      let locked = false;
+      let pairs = 0;
+      let moves = 0;
+      let timerInterval = null;
+      let seconds = 0;
+      let started = false;
+
+      let cards = [];
 
       // randomly shuffles the button colors
-      function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function formatTime(s){
+        return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+      }
+
+      function startTimer() {
+        clearInterval(timerInterval);
+
+        seconds = 0;
+        timerEl.textContent = setInterval(() => {
+          seconds++;
+          timerEl.textContent = formatTime(seconds);
+        }, 1000);
+      }
+
+      function showToast(msg, type='') {
+        toastEl.textContent = msg;
+        toastEl.className = `toast show ${type ? ` ${type}` : ''}`;
+      
+        clearTimeout(toastEl._timeout);
+        toastEl._timeout = setTimeout(() => {
+          toastEl.classname = "toast";
+        }, 2000);
+      }
+      
+      function makeConfetti() {
+        confettiEl.innerHTML = '';
+
+        const shapes = ['square', 'rect', 'diamond'];
+        const cols = ["#f87171","#fb923c","#facc15","#4ade80","#60a5fa","#c084fc","#f472b6"];
+        
+        for(let i = 0; i < 50; i++){
+          const el = document.createElement("div");
+          el.classname = "confetti-piece " + shapes[i % shapes.length];
+
+          el.style.cssText = `
+            left: ${Math.random() * 100}%;
+            background: ${cols[i % cols.length]};
+            animation-delay: ${Math.random() * 0.6}s;
+            animation-duration: ${0.8 + Math.random() * 0.8}s;
+            width: ${6 + Math.random() * 8}px;
+            height: ${6 + Math.random() * 8}px;
+          `;
+
+          confettiEl.appendChild(el);
         }
       }
 
-      // wait for HTML to load
-      window.addEventListener("DOMContentLoaded", () => {
-        const buttons = document.querySelectorAll(
-          "#red1, #red2, #orange1, #orange2, #yellow1, #yellow2, #green1, #green2, #blue1, #blue2, #purple1, #purple2"
-        );
+      function createCard(color, index){
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.color = color;
+        card.dataset.index = index;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "Card" + (index + 1));
+        card.tabIndex = 0;
 
-        const shuffledColors = [...colors]; // create copy of colors list
-        shuffle(shuffledColors);
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-pip color-${color}"></div>
+            </div>
+            <div class="card-back">
+              <div class="card-question"></div>
+            </div>
+          </div>
+        `;
 
-        buttons.forEach((btn, index) => {
-          const color = shuffledColors[index];
-          btn.classList.remove(
-            "red",
-            "orange",
-            "yellow",
-            "green",
-            "blue",
-            "purple"
-          );
-          btn.classList.add(color);
-          btn.onclick = () => handleClick(color);
+        card.addEventListener("click", () => handleClick(card));
+        card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") handleClick(card); });
+        return card;
+      }
 
-          setTimeout(() => {
-            btn.style.backgroundColor = "grey";
-          }, 4000);
+      function initGame() {
+        clearInterval(timerInterval);
+        selected = null;
+        locked = false;
+        pairs = 0;
+        moves = 0;
+        started = false;
+        seconds = 0;
+
+        pairsEl.textContent = `0/${COLORS.length}`;
+        movesEl.textContent = "0";
+        timerEl.textContent = "0:00";
+        winOverlay.classList.remove("show");
+        winOverlay.setAttribute("aria-hidden", "true");
+        board.innerHTML = '';
+        cards = [];
+
+        const deck = shuffle([...COLORS, ...COLORS]);
+        deck.forEach((color, idex) => {
+          const card = createCard(color, i);
+          board.appendChild(card);
+          cards.push(card);
         });
-      });
 
-      function handleClick(color) {
-        if (lastClickedColor === null) {
-          lastClickedColor = color; // first click
-        } else {
-          if (lastClickedColor === color) {
-            document.getElementById(
-              `matched${capitalize(color)}`
-            ).innerText = `You matched ${color}!`;
-          } else {
-            document.getElementById("matchFailed").innerText =
-              "Not a match! Game over :(";
-            document.getElementById("matchedRed").innerText = "";
-            document.getElementById("matchedOrange").innerText = "";
-            document.getElementById("matchedYellow").innerText = "";
-            document.getElementById("matchedGreen").innerText = "";
-            document.getElementById("matchedBlue").innerText = "";
-            document.getElementById("matchedPurple").innerText = "";
-          }
-          lastClickedColor = null;
+        locked = true;
+        cards.forEach(card => card.classList.add("peeking"));
+        setTimeout(() => {
+          cards.forEach(c => c.classList.remove("peeking"));
+          locked = false;
+        }, PEEK_DURATION);
+      }
+
+      function handle_click(card) {
+        if (locked) return;
+        if (card.classList.contains("matched")) return;
+        if (card === selected) return;
+        if (card.classicList.contains("flipped") && !selected) return;
+
+        if (!started) {
+          startTimer();
+          started = true;
         }
-      }
 
-      function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-      }
+        card.classList.add("flipped");
+
+        if (!selected) {
+          selected = card;
+          return;
+        }
+
+        moves++;
+        movesEl.textContent = moves;
+        locked = true;
+
+        const a = selected;
+        const b = card;
+        selected = null;
+
+        if (a.dataset.color == b.dataset.color) {
+          a.classList.add("matched");
+          b.classList.add("matched");
+          pairs++;
+          pairsEl.textContent = `${pairs}/${COLORS.length}`;
+          locked = false;
+
+          if(pairs == COLORS.length) {
+            clearInterval(timerInterval);
+            setTimeout(() => showWin(), 400);
+          } else {
+            showToast("Nice match!", "success");
+          }
+
+        } else {
+            showToast("Not quite, try again!", "error");
+            setTimeout(() => {
+              a.classList.remove("flipped");
+              b.classList.remove("flipped");
+              locked = false;
+            }, LOCK_DURATION);
+          }
+  
+        }
+
+        function showWin() {
+          makeConfetti();
+          finalMovesEl.textContent = moves;
+          finalTimeEl.textContent = formatTime(seconds);
+          winOverlay.classList.add("show");
+          winOverlay.setAttribute("aria-hidden", "false");
+        }
+
+        document.getElementById("restartBtn").addEventListener("click", initGame);
+        document.getElementById("playAgainBtn").addEventListener("click", initGame);
+
+        initGame();
+      
     </script>
   </body>
 </html>
