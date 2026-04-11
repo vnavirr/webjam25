@@ -19,6 +19,17 @@
 * Keyboard accessible — all cards are focusable and operable with Enter or Space
 * Responsive layout — scales down cleanly on mobile screens
 
+## 🛠️ Tech Stack
+
+| Layer       | Technology                                                           |
+| ----------- | -------------------------------------------------------------------- |
+| Structure   | HTML5                                                                |
+| Styling     | CSS3 (custom properties, grid, 3D transforms, keyframe animations)   |
+| Logic       | Vanilla JavaScript (ES6+)                                            |
+| Fonts       | Syne + DM Sans via Google Fonts                                      |
+| Server      | serve (static file server)                                           |
+
+
 ## 🚀 Getting Started
 **Prerequisites**
 * Node.js v14 or higher
