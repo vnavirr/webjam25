@@ -1,4 +1,4 @@
-# 🎨 Memory Color Matching
+# 🎨 MemMatch
 
 ## 🎮 How to Play
 
